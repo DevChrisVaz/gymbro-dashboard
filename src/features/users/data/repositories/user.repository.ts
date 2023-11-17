@@ -1,10 +1,12 @@
+import { inject, injectable } from "tsyringe";
 import { IUser } from "../../domain/entities/user.entity";
-import { UserRepository } from "../../domain/repositories/user.repository";
-import { UserRemoteDataSource } from "../data-sources/users-remote-data-source";
+import type { UserRepository } from "../../domain/repositories/user.repository";
+import type { UserRemoteDataSource } from "../data-sources/users-remote-data-source";
 
+@injectable()
 export class UserRepositoryImpl implements UserRepository {
     constructor(
-        private userRemoteDataSource: UserRemoteDataSource,
+        @inject("UserRemoteDataSource") private userRemoteDataSource: UserRemoteDataSource,
         // private userLocalDataSource: AuthLocalDataSource
     ) { }
 

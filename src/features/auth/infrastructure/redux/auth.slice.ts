@@ -1,15 +1,18 @@
 import { RootState } from "@/core/data/frameworks/datasources/local/redux/store";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { ILoggedUser } from "../../domain/entities/logged-user.entity";
 
 type Status = "INITIAL" | "LOADING" | "SUCCEEDED" | "FAILED";
 
 type AuthState = {
+    loggedUser: ILoggedUser | null;
     token: string | null;
     status: Status;
     error: string | null | undefined;
 }
 
 const initialState: AuthState = {
+    loggedUser: null,
     token: null,
     status: 'INITIAL',
     error: null
@@ -30,7 +33,13 @@ export const authSlice = createSlice({
         },
         rmToken: (state: AuthState) => {
             state.token = null
-        }
+        },
+        setLoggedUser: (state: AuthState, action: PayloadAction<ILoggedUser>) => {
+            state.loggedUser = action.payload;
+        },
+        rmLoggedUser: (state: AuthState) => {
+            state.loggedUser = null
+        },
     },
     // extraReducers(builder) {
         // builder
@@ -56,7 +65,9 @@ export const authSlice = createSlice({
 
 export const {
     setToken,
-    rmToken
+    rmToken,
+    setLoggedUser,
+    rmLoggedUser
 } = authSlice.actions;
 
 export const selectToken = (state: RootState) => state.auth.token;

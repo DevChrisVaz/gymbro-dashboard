@@ -8,7 +8,7 @@ export const acceptHeaderInterceptorId = axios.interceptors.request.use(acceptHe
 const axiosInstance = axios.create({
     // baseURL: "https://gymbro-services.onrender.com/api/",
     baseURL: "http://localhost:3001/api/",
-    timeout: 5000
+    timeout: 15000
 });
 
 axiosInstance.interceptors.request.use(authorizationInterceptor, notAuthorizedInterceptor);

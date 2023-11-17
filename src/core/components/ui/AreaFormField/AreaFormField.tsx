@@ -43,7 +43,7 @@ const AreaFormField: React.FC<AreaFormFieldProps> = (props) => {
 						</div>
 					}
 					<textarea
-						className={`w-full text-sm text-dark-gray dark:text-white dark:bg-dark bg-light ${isFocused || inputValue ? 'pt-5 pb-1' : 'py-2'} px-3 pr-10 focus:outline-none`}
+						className={`w-full resize-none text-sm text-dark-gray dark:text-white dark:bg-dark bg-light ${isFocused || inputValue ? 'pt-5 pb-1' : 'py-2'} px-3 pr-10 focus:outline-none`}
 						onFocus={onFocus}
 						onBlur={onBlur}
 						name={props.name}

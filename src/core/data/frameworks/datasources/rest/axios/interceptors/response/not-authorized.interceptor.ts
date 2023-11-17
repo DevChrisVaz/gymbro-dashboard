@@ -6,6 +6,7 @@ export const notAuthorizedInterceptor = (error: AxiosError) => {
     if (error.status === 401){
         const authLocalDataSource = new AuthLocalDataSourceImpl()
         authLocalDataSource.removeToken();
+        console.log(error);
         redirect("/login");
     }
     return Promise.reject(error);

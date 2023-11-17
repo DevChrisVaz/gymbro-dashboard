@@ -4,7 +4,7 @@ export interface Header {
     [propName: string]: any | undefined
 }
 
-type TableProps = {
+type TableProps<T> = {
     columns: Header[];
     rows: T[];
     isLoading?: boolean;

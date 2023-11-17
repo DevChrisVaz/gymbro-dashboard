@@ -45,9 +45,9 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 	return (
 		<div ref={sidebarRef} className={`h-screen ${isVisible ? 'w-[300px]' : 'w-0 md:w-[62px]'} bg-light dark:bg-dark border-r border-r-primary-500 text-white top-0 left-0 transition-all duration-300 overflow-hidden`}>
 			<div className="flex items-center justify-between py-4 pl-2 pr-4">
-				<a href='/dashboard' className="focus:outline-none">
+				<Link to='/' className="focus:outline-none">
 					<img className="min-w-[160px]" src="/img/logo/horizontal-logo.svg" alt='GYMBRO' />
-				</a>
+				</Link>
 				{isOpen ? (
 					<button onClick={toggleSidebar} className="text-xl focus:outline-none">
 						<FiX className="text-primary text-2xl cursor-pointer" />
@@ -58,9 +58,9 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 					</button>
 				)}
 			</div>
-			<ul className={`py-2 w-full`}>
+			<ul className={`py-2 w-full px-2`}>
 				{props.links.map((link, index) => (
-					<li key={index} className="w-full dark:bg-dark dark:hover:bg-dark-gray-soft">
+					<li key={index} className="w-full my-2 rounded-md dark:bg-dark dark:hover:bg-dark-gray-soft">
 						<SidebarLink
 							item={link}
 							isSidebarOpen={isVisible}
@@ -97,9 +97,9 @@ const SidebarLink: React.FC<SidebarLinkProps> = (props) => {
 		<>
 			{
 				props.item.items ?
-					<div className="py-2 px-4 flex items-center cursor-pointer" onClick={toggleOpen}>
+					<div className="py-2 px-2 flex items-center cursor-pointer" onClick={toggleOpen}>
 						<span className="mr-6">{props.item.icon}</span>
-						<span className="text-dark-gray dark:text-white">{props.item.label}</span>
+						<span className="text-dark-gray dark:text-white text-ellipsis">{props.item.label}</span>
 						<div
 							onClick={(e) => {
 								e.preventDefault();
@@ -116,9 +116,9 @@ const SidebarLink: React.FC<SidebarLinkProps> = (props) => {
 					// 	<span className="text-dark-gray dark:text-white">{props.item.label}</span>
 					// </a>
 
-					<Link to={props.item.url!} className="py-2 px-4 flex items-center">
+					<Link to={props.item.url!} className="py-2 px-2 flex items-center">
 						<span className="mr-6">{props.item.icon}</span>
-						<span className="text-dark-gray dark:text-white">{props.item.label}</span>
+						<span className="text-dark-gray dark:text-white text-ellipsis">{props.item.label}</span>
 					</Link>
 			}
 			{props.item.items && (

@@ -1,12 +1,12 @@
-import { Axios, AxiosRequestConfig, AxiosResponse, isAxiosError } from "axios";
+import { type AxiosInstance, AxiosRequestConfig, AxiosResponse, isAxiosError } from "axios";
 import { authorizationInterceptor } from "./interceptors/authorization.interceptor";
 import { APIResult, ApiRestClient, HttpMethod } from "@/core/data/contracts/datasources/api-rest-client";
-// import { inject, injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
-// @injectable()
+@injectable()
 export class AxiosApiRestClient implements ApiRestClient {
 
-    constructor(private axiosClient: Axios) { }
+    constructor(@inject("AxiosInstance") private axiosClient: AxiosInstance) { }
 
     replaceToken(token: string): void {
         this.axiosClient.interceptors.request.clear();

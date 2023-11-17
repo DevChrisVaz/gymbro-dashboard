@@ -30,5 +30,5 @@
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "files": ["./node_modules/redux-persist/types/storage/index.d.ts"],
+  "files": ["./node_modules/redux-persist/types/storage/index.d.ts", "./src/features/plans/data/repositories/PlanRepositoryImpl.ts", "./src/features/branches/presentation/contexts/BranchProvider.tsx"],
 }

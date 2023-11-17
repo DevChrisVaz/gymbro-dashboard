@@ -1,8 +1,11 @@
+import { inject, injectable } from "tsyringe";
 import type { AuthRepository } from "../../domain/repositories/auth.repository";
-import { ICredentials } from "../../domain/entities/login.entity";
 
+@injectable()
 export class RefreshTokenUseCase {
-    constructor(private authRepository: AuthRepository) { }
+    constructor(
+        @inject("AuthRepository") private authRepository: AuthRepository
+    ) { }
 
     async run() {
         let response = await this.authRepository.refreshToken();

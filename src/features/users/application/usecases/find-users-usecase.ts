@@ -1,7 +1,9 @@
-import { UserRepository } from "../../domain/repositories/user.repository";
+import { inject, injectable } from "tsyringe";
+import type { UserRepository } from "../../domain/repositories/user.repository";
 
+@injectable()
 export class FindUsersUseCase {
-    constructor(private userRepository: UserRepository) { }
+    constructor(@inject("UserRepository") private userRepository: UserRepository) { }
 
     async run() {
         let response = await this.userRepository.findUsers();

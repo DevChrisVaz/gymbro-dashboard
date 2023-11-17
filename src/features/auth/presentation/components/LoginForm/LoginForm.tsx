@@ -2,12 +2,8 @@ import Loader from '@/core/components/Loader/Loader';
 import { Button } from '@/core/components/ui/Button';
 import { PasswordFormField } from '@/core/components/ui/PasswordFormField';
 import { TextFormField } from '@/core/components/ui/TextFormField';
-import { AxiosApiRestClient } from '@/core/data/frameworks/datasources/rest/axios/axios-implementation';
-import publicAxiosConfig from '@/core/data/frameworks/datasources/rest/axios/public-axios.config';
+import { container } from "@/config/dependencies"
 import { LoginUseCase } from '@/features/auth/application/usecases/login-usecase';
-import { AuthLocalDataSourceImpl } from '@/features/auth/data/data-sources/auth-local-data-source';
-import { AuthRemoteDataSourceImpl } from '@/features/auth/data/data-sources/auth-remote-data-source';
-import { AuthRepositoryImpl } from '@/features/auth/data/repositories/auth.repository';
 import { ICredentials } from '@/features/auth/domain/entities/login.entity';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -25,10 +21,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
 	const navigate = useNavigate();
 
-	const authLocalDataSource = new AuthLocalDataSourceImpl();
-	const authRemoteDataSource = new AuthRemoteDataSourceImpl(new AxiosApiRestClient(publicAxiosConfig));
-	const authRepository = new AuthRepositoryImpl(authRemoteDataSource, authLocalDataSource);
-	const loginUseCase = new LoginUseCase(authRepository);
+	const loginUseCase = container.resolve<LoginUseCase>("LoginUseCase");
 
 	const submitLogin = async (credentials: ICredentials) => {
 		await loginUseCase.run(credentials);

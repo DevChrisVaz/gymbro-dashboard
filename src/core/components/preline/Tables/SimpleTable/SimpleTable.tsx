@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleTableProps } from '../Tables';
+import { Header, SimpleTableProps } from '../Tables';
 import numeral from 'numeral';
 import { useNavigate } from 'react-router-dom';
 import Loader from '@/core/components/Loader/Loader';
@@ -11,13 +11,13 @@ const SimpleTable: React.FC<SimpleTableProps> = (props) => {
 	return (
 		<div className="flex flex-col">
 			<div className="-m-1.5 overflow-x-auto">
-				<div className="p-1.5 min-w-full inline-block align-middle">
+				<div className="p-1.5 pb-6 min-w-full inline-block align-middle">
 					<div className="overflow-hidden">
 						<table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 							<thead>
 								<tr>
 									{
-										props.columns.length > 0 && props.columns.map((column) => {
+										props.columns.length > 0 && props.columns.map((column: Header) => {
 											return (
 												<th
 													key={column.id}
@@ -39,11 +39,11 @@ const SimpleTable: React.FC<SimpleTableProps> = (props) => {
 											><Loader /></td>
 										</tr>
 										:
-										props.rows.length > 0 && props.columns.length > 0 ? props.rows.map((row, index) => {
+										props.rows.length > 0 && props.columns.length > 0 ? props.rows.map((row: any, index: number) => {
 											return (
-												<tr style={{ cursor: props.linked ? "Pointer" : "" }} key={index} onClick={() => props.linked && navigate(row.uuid)}>
+												<tr className="dark:hover:bg-dark-gray-soft" style={{ cursor: props.linked ? "Pointer" : "" }} key={index} onClick={() => props.linked && navigate(row.uuid)}>
 													{
-														props.columns.map(column => {
+														props.columns.map((column: Header) => {
 															return (
 																<td
 																	key={column.id}

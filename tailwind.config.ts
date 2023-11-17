@@ -5,6 +5,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    'node_modules/preline/dist/*.js',
   ],
   theme: {
     colors: {
@@ -24,7 +25,7 @@ export default {
       'light-green': '#7CD8B3',
       'dark-green': '#26BE81',
       'dark-gray': '#111111',
-      'dark-gray-soft': '#2d2d2d',
+      'dark-gray-soft': '#161616 ',
       'error': '#ff0000'
     },
     extend: {

@@ -6,8 +6,9 @@ export type TextFormFieldProps = {
 	name?: string,
 	onChange?: (e: ChangeEvent<any>) => void,
 	prefixIcon?: ReactNode,
-	value?: string,
+	value?: string | number,
 	error?: string;
+	info?: string;
 }
 
 const TextFormField: React.FC<TextFormFieldProps> = (props) => {
@@ -33,20 +34,19 @@ const TextFormField: React.FC<TextFormFieldProps> = (props) => {
 		setInputValue(props.value);
 	}, [props.value]);
 
-
 	return (
 		<div className="mb-4">
 			<div className="relative">
-				<div className="w-full flex dark:bg-dark bg-light rounded-md overflow-hidden border-solid border border-primary-500">
+				<div className={"w-full flex transition-all duration-300 dark:bg-dark bg-light rounded-md overflow-hidden border-solid border ".concat(props.error ? "border-error" : "border-primary-500")}>
 					{
 						props.prefixIcon &&
-						<div className="w-[45px] flex items-center justify-center text-primary">
+						<div className={"w-[45px] transition-all duration-300 flex items-center justify-center ".concat(props.error ? "text-error" : "text-primary")}>
 							{props.prefixIcon}
 						</div>
 					}
 					<input
 						type="text"
-						className={`w-full text-sm text-dark-gray dark:text-white dark:bg-dark bg-light ${isFocused || inputValue ? 'pt-5 pb-1' : 'py-2'} px-3 pr-10 focus:outline-none`}
+						className={`w-full text-sm text-dark-gray dark:text-white dark:bg-dark bg-light ${(isFocused || inputValue !== null && inputValue !== "") ? 'pt-5 pb-1' : 'py-2'} px-3 pr-10 focus:outline-none`}
 						onFocus={onFocus}
 						onBlur={onBlur}
 						name={props.name}
@@ -56,7 +56,7 @@ const TextFormField: React.FC<TextFormFieldProps> = (props) => {
 					/>
 				</div>
 				<label
-					className={`absolute left-2 transition-all duration-300 cursor-text ${isFocused || inputValue ? 'top-1 text-xs text-primary' : 'top-2 text-sm text-dark-gray dark:text-white'
+					className={`absolute left-2 transition-all duration-300 cursor-text ${(isFocused || inputValue !== null && inputValue !== "") ? 'top-1 text-xs '.concat(props.error ? "text-error" : "text-primary") : 'top-2 text-sm text-dark-gray dark:text-white'
 						} ${props.prefixIcon && 'left-[45px]'}`}
 					htmlFor={props.name}
 				>
@@ -64,6 +64,7 @@ const TextFormField: React.FC<TextFormFieldProps> = (props) => {
 				</label>
 			</div>
 			{props.error && <p className="mt-1 text-error text-xs italic">{props.error}</p>}
+			{props.info && <p className="text-slate-500 text-xs italic">* {props.info}</p>}
 		</div>
 	);
 };
