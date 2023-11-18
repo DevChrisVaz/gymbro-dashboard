@@ -1,10 +1,12 @@
 import type { AuthRepository } from "../../domain/repositories/auth.repository";
 import { ICredentials } from "../../domain/entities/login.entity";
-// import { autoInjectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
-// @autoInjectable()
+@injectable()
 export class LoginUseCase {
-    constructor(private authRepository: AuthRepository) { }
+    constructor(
+        @inject("AuthRepository") private authRepository: AuthRepository
+    ) { }
 
     async run(credentials: ICredentials) {
         let response = await this.authRepository.login(credentials);

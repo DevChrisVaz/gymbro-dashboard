@@ -1,28 +1,29 @@
 import { Sidebar } from '@/core/components/Sidebar';
-import { AiFillDollarCircle, AiFillHome, AiFillInfoCircle, AiFillMail, AiFillShop } from 'react-icons/ai';
-import { BsFillPersonVcardFill } from 'react-icons/bs';
 import { SidebarItemType } from '@/core/components/Sidebar/Sidebar.d';
 import React from 'react';
-import { IBranch } from '@/features/branches/domain/entities/branch.entity';
-import { useBranchContext } from '../../contexts/branch-context';
+import { AiFillHome, AiFillInfoCircle, AiFillMail, AiFillShop } from 'react-icons/ai';
+import { useGYMContext } from '../../contexts/gym-context';
+import { IGYM } from '@/features/gyms/domain/entities/gym.entity';
+import { IoBarbell } from 'react-icons/io5';
+import { BsFillPersonVcardFill } from 'react-icons/bs';
 
-export type BranchSidebarProps = {
+export type GYMSidebarProps = {
 }
 
-const BranchSidebar: React.FC<BranchSidebarProps> = ({ }) => {
+const GYMSidebar: React.FC<GYMSidebarProps> = ({ }) => {
 
-	const branch: IBranch = useBranchContext()
+	const gym: IGYM = useGYMContext()
 
 	const sidebarLinks: SidebarItemType[] = [
 		{
 			label: 'Inicio',
-			url: '/branches/' + branch.uuid,
+			url: '/',
 			icon: <AiFillHome className="text-primary text-[24px]" />,
 		},
 		{
-			label: branch.name,
+			label: gym.name,
 			// url: '/',
-			icon: <AiFillShop className="text-primary text-[24px]" />,
+			icon: <IoBarbell className="text-primary text-[24px]" />,
 			isOpen: false,
 			items: [
 				{
@@ -38,15 +39,20 @@ const BranchSidebar: React.FC<BranchSidebarProps> = ({ }) => {
 			],
 		},
 		{
-			label: 'Planes',
-			url: '/branches/' + branch.uuid + '/plans',
-			icon: <AiFillDollarCircle className="text-primary text-[24px]" />,
+			label: 'Sucursales',
+			url: '/branches',
+			icon: <AiFillShop className="text-primary text-[24px]" />,
 		},
 		{
 			label: 'Usuarios',
-			url: '/branches/' + branch.uuid + '/users',
+			url: '/users',
 			icon: <BsFillPersonVcardFill className="text-primary text-[24px]" />,
 		},
+		// {
+		// 	label: 'Planes',
+		// 	url: '/plans',
+		// 	icon: <AiFillDollarCircle className="text-primary text-[24px]" />,
+		// },
 		// {
 		// 	label: 'Clientes',
 		// 	url: '/customers',
@@ -62,4 +68,4 @@ const BranchSidebar: React.FC<BranchSidebarProps> = ({ }) => {
 	return <Sidebar links={sidebarLinks} />;
 };
 
-export default BranchSidebar;
+export default GYMSidebar;

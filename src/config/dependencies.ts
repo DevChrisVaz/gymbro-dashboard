@@ -1,7 +1,6 @@
 import { container } from "tsyringe";
 import { ApiRestClient } from "@/core/data/contracts/datasources/api-rest-client";
 import { AxiosApiRestClient } from "@/core/data/frameworks/datasources/rest/axios/axios-implementation";
-import axiosInstance from "@/core/data/frameworks/datasources/rest/axios/axios.config";
 import { UserRemoteDataSource, UserRemoteDataSourceImpl } from "@/features/users/data/data-sources/users-remote-data-source";
 import { UserRepository } from "@/features/users/domain/repositories/user.repository";
 import { UserRepositoryImpl } from "@/features/users/data/repositories/user.repository";
@@ -27,6 +26,11 @@ import { FindBranchPlansUseCase } from "@/features/plans/application/usecases/fi
 import { PlanRemoteDataSource, PlanRemoteDataSourceImpl } from "@/features/plans/data/data-sources/plan-remote-data-source";
 import { PlanRepository } from "@/features/plans/domain/repositories/plan.repository";
 import { PlanRepositoryImpl } from "@/features/plans/data/repositories/plan.repository";
+import axiosInstance from "@/core/data/frameworks/datasources/rest/axios/axios.config";
+import { GYMRemoteDataSource, GYMRemoteDataSourceImpl } from "@/features/gyms/data/data-sources/gym-remote-data-source";
+import { GYMRepository } from "@/features/gyms/domain/repositories/gym.repository";
+import { GYMRepositoryImpl } from "@/features/gyms/data/repositories/gym.repository";
+import { FindUserGymUseCase } from "@/features/gyms/application/usecases/find-user-gym-usecase";
 
 //#region Other Dependencies 
 
@@ -140,7 +144,28 @@ container.register<FindBranchPlansUseCase>("FindBranchPlansUseCase", {
 
 //#endregion
 
-//#region Dependencies
+//#region GYM Dependencies
+
+container.register<GYMRemoteDataSource>("GYMRemoteDataSource", {
+    useClass: GYMRemoteDataSourceImpl
+});
+
+// container.register<GYMLocalDataSource>("GYMLocalDataSource", {
+//     useClass: GYMLocalDataSourceImpl
+// });
+
+container.register<GYMRepository>("GYMRepository", {
+    useClass: GYMRepositoryImpl
+});
+
+container.register<FindUserGymUseCase>("FindUserGymUseCase", {
+    useClass: FindUserGymUseCase
+});
+
+// container.register<null>("", {
+//     useValue: null
+// });
+
 //#endregion
 
 export { container };

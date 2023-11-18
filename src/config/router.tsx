@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Layout } from "../core/components/Layout";
 import { Home } from "../features/home/presentation/pages/Home";
 import { Users } from "../features/users/presentation/pages/Users";
 import { Login } from "@/features/auth/presentation/pages/Login";
@@ -9,12 +8,14 @@ import { CreatePlan } from "@/features/plans/presentation/pages/CreatePlan";
 import { Branches } from "@/features/branches/presentation/pages/Branches";
 import { CreateBranch } from "@/features/branches/presentation/pages/CreateBranch";
 import { Branch } from "@/features/branches/presentation/pages/Branch";
+import { BranchLayout } from "@/features/branches/presentation/components/BranchLayout";
+import { GYMLayout } from "@/features/gyms/presentation/components/GYMLayout";
 
 export const Router: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<Layout />}>
+                <Route element={<GYMLayout />}>
                     <Route index element={<Home />} />
                     <Route path="users" element={<Users />} />
                     <Route path="plans" element={<Plans />} />
@@ -22,8 +23,13 @@ export const Router: React.FC = () => {
                     <Route path="branches" element={<Outlet />}>
                         <Route index element={<Branches />} />
                         <Route path="create-branch" element={<CreateBranch />} />
-                        <Route path=":id" element={<Branch />} />
-                        <Route path=":id/create-plan" element={<CreatePlan />} />
+                    </Route>
+                </Route>
+                <Route path="branches/:id" element={<BranchLayout />}>
+                    <Route index element={<Branch />} />
+                    <Route path="plans" element={<Outlet />} >
+                        <Route index element={<Plans />} />
+                        <Route path="create-plan" element={<CreatePlan />} />
                     </Route>
                 </Route>
                 <Route path="login" element={<Login />} />

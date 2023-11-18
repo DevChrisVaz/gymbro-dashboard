@@ -26,7 +26,6 @@ const Home: React.FC<HomeProps> = ({ }) => {
 
 	const logout = () => {
 		authLocalDataSource.removeToken();
-		console.log("made it")
 		navigate("/login");
 	}
 	return (

@@ -13,6 +13,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(authorizationInterceptor, notAuthorizedInterceptor);
 axiosInstance.interceptors.response.use(null, notAuthorizedInterceptor);
-// axiosInstance.defaults.withCredentials = true;
+axiosInstance.defaults.withCredentials = true;
 
 export default axiosInstance;

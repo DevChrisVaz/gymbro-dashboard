@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from '@/features/auth/infrastructure/redux/auth.slice';
+import gymReducer from '@/features/gyms/infrastructure/data/localstorage/redux/gym.slice';
 
 const persistConfig = {
     key: "root",
@@ -9,7 +10,8 @@ const persistConfig = {
 }
 
 const reducersToPersist = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    gym: gymReducer
 })
 
 const persistedReducers = persistReducer(persistConfig, reducersToPersist);

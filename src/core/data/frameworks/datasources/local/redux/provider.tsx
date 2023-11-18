@@ -14,7 +14,6 @@ export function ReduxProvider({ children }: { children: React.ReactNode }) {
             <PersistGate loading={
                 <div className="absolute w-screen h-screen d-flex justify-center items-center"><Loader /></div>
             } persistor={persistor}>
-
                 {children}
             </PersistGate>
         </Provider>);

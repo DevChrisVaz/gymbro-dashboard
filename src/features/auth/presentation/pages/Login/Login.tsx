@@ -14,7 +14,7 @@ const Login: React.FC<LoginProps> = ({ }) => {
 
 	useEffect(() => {
 		if (authLocalDataSource.getToken()) {
-			navigate("/dashboard");
+			navigate("/");
 		}
 	}, []);
 
