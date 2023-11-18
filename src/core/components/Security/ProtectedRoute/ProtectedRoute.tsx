@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { ProtectedRouteProps } from './ProtectedRoute.d';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => {
 
 	// const token = useSelector(selectToken);
-	const dispatch = useDispatch();
-	const router = useNavigate();
+	// const dispatch = useDispatch();
+	// const router = useNavigate();
 
 	// const userRepo = new UserRepo();
 	// const refreshUserSessionUseCase = new RefreshUserSessionUseCase(userRepo);
