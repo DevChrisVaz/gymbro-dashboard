@@ -3,6 +3,7 @@ import { CreateBranchDto } from "../../application/dto/create-branch.dto";
 import { IBranch } from "../../domain/entities/branch.entity";
 import { BranchRepository } from "../../domain/repositories/branch.repository";
 import type { BranchRemoteDataSource } from "../data-sources/branch-remote-data-source";
+import { IUser } from "@/features/users/domain/entities/user.entity";
 
 @injectable()
 export class BranchRepositoryImpl implements BranchRepository {
@@ -42,6 +43,21 @@ export class BranchRepositoryImpl implements BranchRepository {
 
     async findById(branchId: string): Promise<IBranch> {
         const response = await this.branchRemoteDataSource.findById(branchId);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
+
+    async findUsers(branchId: string): Promise<IUser[]> {
+        const response = await this.branchRemoteDataSource.findUsers(branchId);
 
         switch (response.type) {
             case "Succeeded":

@@ -1,20 +1,15 @@
-import { AxiosApiRestClient } from '@/core/data/frameworks/datasources/rest/axios/axios-implementation';
-import axiosInstance from '@/core/data/frameworks/datasources/rest/axios/axios.config';
-import { GetLoggedUserUseCase } from '@/features/auth/application/usecases/get-logged-user-usecase';
 import { LogoutUseCase } from '@/features/auth/application/usecases/logout-usecase';
-import { AuthLocalDataSourceImpl } from '@/features/auth/data/data-sources/auth-local-data-source';
-import { AuthRemoteDataSourceImpl } from '@/features/auth/data/data-sources/auth-remote-data-source';
-import { AuthRepositoryImpl } from '@/features/auth/data/repositories/auth.repository';
 import { ILoggedUser } from '@/features/auth/domain/entities/logged-user.entity';
 import useImage from '@/hooks/use-image';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { container } from "@/config/dependencies";
+import { GetLoggedUserUseCase } from '@/features/auth/application/usecases/get-logged-user-usecase';
 
 export type AccountDropdownProps = {
 }
 
 const AccountDropdown: React.FC<AccountDropdownProps> = ({ }) => {
-	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [loggedUser, setLoggedUser] = useState<ILoggedUser>({
 		id: "",
 		name: "",
@@ -25,19 +20,15 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({ }) => {
 	const navigate = useNavigate();
 	const image = useImage();
 
-	const authLocalDataSource = new AuthLocalDataSourceImpl();
-	const axiosApiRestClient = new AxiosApiRestClient(axiosInstance);
-	const authRemoteDataSource = new AuthRemoteDataSourceImpl(axiosApiRestClient);
-	const authRepository = new AuthRepositoryImpl(authRemoteDataSource, authLocalDataSource);
-	const getLoggedUserUseCase = new GetLoggedUserUseCase(authRepository);
-	const logoutUseCase = new LogoutUseCase(authRepository);
+	const getLoggedUserUseCase = container.resolve<GetLoggedUserUseCase>("GetLoggedUserUseCase");
+	const logoutUseCase = container.resolve<LogoutUseCase>("LogoutUseCase");
 
 	const logout = () => {
-		if(logoutUseCase.run()) navigate("/login");
+		if (logoutUseCase.run()) navigate("/login");
 	}
 
 	useEffect(() => {
-		try{
+		try {
 			setLoggedUser(getLoggedUserUseCase.run());
 		} catch {
 			navigate("/login")
@@ -48,7 +39,6 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({ }) => {
 		<div className="hs-dropdown relative inline-flex">
 			<button id="hs-dropdown-with-dividers" type="button" className="hs-dropdown-toggle px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg disabled:opacity-50 disabled:pointer-events-none text-primary dark:hover:bg-dark-gray-soft">
 				<div
-					onClick={() => setDropdownOpen(!dropdownOpen)}
 					className="flex-shrink-0 group flex items-center"
 				>
 					<div className="flex items-center mr-2">
