@@ -5,6 +5,7 @@ import { SidebarItemType } from '@/core/components/Sidebar/Sidebar.d';
 import React from 'react';
 import { IBranch } from '@/features/branches/domain/entities/branch.entity';
 import { useBranchContext } from '../../contexts/branch-context';
+import { IoBarbell } from 'react-icons/io5';
 
 export type BranchSidebarProps = {
 }
@@ -36,6 +37,11 @@ const BranchSidebar: React.FC<BranchSidebarProps> = ({ }) => {
 					icon: <AiFillMail className="text-primary text-[24px]" />,
 				},
 			],
+		},
+		{
+			label: 'Equipamiento',
+			url: '/branches/' + branch.uuid + '/equipment',
+			icon: <IoBarbell className="text-primary text-[24px]" />
 		},
 		{
 			label: 'Planes',
