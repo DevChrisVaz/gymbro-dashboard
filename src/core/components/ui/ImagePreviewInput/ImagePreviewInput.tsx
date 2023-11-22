@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import { ImagePreviewInputStyles } from './styles';
+import { ImageOff, Trash2 } from "lucide-react";
 
 const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 5242880;
 // const BYTES_PER_KILO_BYTE = 1024;
@@ -72,7 +72,7 @@ const ImagePreviewInput: React.FC<ImagePreviewInputProps> = ({
 
 	return (
 		<>
-			<div id="preview-modal" className="modal fade" tabIndex={-1}>
+			{/* <div id="preview-modal" className="modal fade" tabIndex={-1}>
 				<div className="modal-dialog modal-lg">
 					<div className="modal-content">
 						<div className="modal-header">
@@ -80,28 +80,28 @@ const ImagePreviewInput: React.FC<ImagePreviewInputProps> = ({
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 						</div>
 						<div className="modal-body text-center">
-							{ previewModalImage && <img src={URL.createObjectURL(previewModalImage)} className="img-fluid" alt="preview" /> }
+							{previewModalImage && <img src={URL.createObjectURL(previewModalImage)} className="img-fluid" alt="preview" />}
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
-			<ImagePreviewInputStyles>
+			<div>
 				{
 					image ?
 						<div className="image-preview col-12">
-							<Delete className="icon" onClick={() => removeFile(image)} />
+							<Trash2 className="icon" onClick={() => removeFile(image)} />
 							{/* <i className="ti-trash icon" onClick={() => removeFile(image)} /> */}
-							<img 
-								src={URL.createObjectURL(files[image])} 
-								alt="preview" 
+							<img
+								src={URL.createObjectURL(files[image])}
+								alt="preview"
 								onClick={() => setPreviewModalImage(files[image])}
-								data-bs-toggle="modal" 
-								data-bs-target="#preview-modal" 
+								data-bs-toggle="modal"
+								data-bs-target="#preview-modal"
 							/>
 						</div> :
 						<div className="icon-container">
-							<ImageNotSupported className="icon" />
+							<ImageOff className="icon" />
 						</div>
 				}
 				<div className="options col-12">
@@ -125,7 +125,7 @@ const ImagePreviewInput: React.FC<ImagePreviewInputProps> = ({
 						}
 					</div>
 				</div>
-			</ImagePreviewInputStyles>
+			</div>
 		</>
 	);
 };
