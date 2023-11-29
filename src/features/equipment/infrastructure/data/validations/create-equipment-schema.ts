@@ -8,7 +8,8 @@ const createEquipmentSchema: yup.ObjectSchema<CreateEquipmentDto> = yup.object()
     name: yup.string().required(),
     description: yup.string().required(),
     qty: yup.number().required(),
-    image: yup.string()
+    image: yup.string(),
+    branch: yup.string()
 });
 
 export default createEquipmentSchema;

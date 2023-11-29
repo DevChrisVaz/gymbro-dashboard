@@ -25,7 +25,7 @@ const ImagePreviewInput: React.FC<ImagePreviewInputProps> = ({
 }) => {
 	const [files, setFiles] = useState<any>({});
 	const [image, setImage] = useState<any>(null);
-	const [previewModalImage, setPreviewModalImage] = useState<any>(null);
+	const [_, setPreviewModalImage] = useState<any>(null);
 
 	const handleNewFileUpload = (e: any) => {
 		const { files: newFiles } = e.target;
