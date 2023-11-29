@@ -29,7 +29,7 @@ export class PlanRemoteDataSourceImpl implements PlanRemoteDataSource {
     findBranchPlans(branchId: string): Promise<APIResult<IPlan[]>> {
         return this.apiRestClient.call(
             HttpMethod.GET,
-            "/plans/" + branchId,
+            "branches/" + branchId + "/plans/",
             {}
             // {
             //     body: { userName, password }
