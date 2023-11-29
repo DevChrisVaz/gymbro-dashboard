@@ -89,7 +89,7 @@ const ImagePreviewInput: React.FC<ImagePreviewInputProps> = ({
 			<div>
 				{
 					image ?
-						<div className="image-preview col-12">
+						<div className="w-full h-[350px] bg-dark-gray-soft rounded-lg">
 							<Trash2 className="icon" onClick={() => removeFile(image)} />
 							{/* <i className="ti-trash icon" onClick={() => removeFile(image)} /> */}
 							<img
@@ -100,8 +100,8 @@ const ImagePreviewInput: React.FC<ImagePreviewInputProps> = ({
 								data-bs-target="#preview-modal"
 							/>
 						</div> :
-						<div className="icon-container">
-							<ImageOff className="icon" />
+						<div className="w-full h-[350px] flex items-center justify-center bg-dark-gray-soft rounded-lg">
+							<ImageOff className='text-primary' size={96} />
 						</div>
 				}
 				<div className="options col-12">

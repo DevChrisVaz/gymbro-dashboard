@@ -35,10 +35,10 @@ const AreaFormField: React.FC<AreaFormFieldProps> = (props) => {
 	return (
 		<div className="mb-4">
 			<div className="relative">
-				<div className="w-full flex dark:bg-dark bg-light rounded-md overflow-hidden border-solid border border-primary-500">
+				<div className={"w-full flex dark:bg-dark bg-light rounded-md overflow-hidden border-solid border ".concat(props.error ? "border-error" : "border-primary-500")}>
 					{
 						props.prefixIcon &&
-						<div className="w-[45px] flex items-center justify-center text-primary">
+						<div className={"w-[45px] flex items-center justify-center ".concat(props.error ? "text-error" : "text-primary")}>
 							{props.prefixIcon}
 						</div>
 					}
@@ -53,7 +53,7 @@ const AreaFormField: React.FC<AreaFormFieldProps> = (props) => {
 					/>
 				</div>
 				<label
-					className={`absolute left-2 transition-all duration-300 cursor-text ${isFocused || inputValue ? 'top-1 text-xs text-primary' : 'top-2 text-sm text-dark-gray dark:text-white'
+					className={`absolute left-2 transition-all duration-300 cursor-text ${isFocused || inputValue ? 'top-1 text-xs '.concat(props.error ? "text-error" : "text-primary") : 'top-2 text-sm text-dark-gray dark:text-white'
 						} ${props.prefixIcon && 'left-[45px]'}`}
 					htmlFor={props.name}
 				>
