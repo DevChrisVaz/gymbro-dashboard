@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Router } from "./config/router";
-import { ToastProvider } from "./core/components/Toast";
+// import { IToast, ToastContext } from "./core/components/Toast";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
+  // const { addToast } = useContext(ToastContext);
+
   useEffect(() => {
-    // Función para manejar cambios en el tamaño de la pantalla
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 768);
     };
@@ -14,21 +15,26 @@ function App() {
     // Suscribe el evento de cambio de tamaño de la ventana
     window.addEventListener('resize', handleResize);
 
-    // Limpieza al desmontar el componente
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    // window.addEventListener("unhandledrejection", (event: PromiseRejectionEvent) => {
+    //   console.error('Error global:', event);
+
+    //   const newToast: IToast = {
+    //     type: "error",
+    //     title: "Random title",
+    //     message: "Algo salió mal"
+    //   }
+
+    //   addToast(newToast);
+    // });
   }, []);
 
   return (
-    isLargeScreen ? 
-    <ToastProvider>
+    isLargeScreen ?
       <Router />
-    </ToastProvider>
-    :
-    <div style={{ color: 'red', fontSize: '18px' }}>
-      Accede desde un dispositivo con una pantalla grande, como una tablet o una PC.
-    </div>
+      :
+      <div style={{ color: 'red', fontSize: '18px' }}>
+        Accede desde un dispositivo con una pantalla grande, como una tablet o una PC.
+      </div>
   )
 }
 

@@ -4,6 +4,7 @@ import { SearchBar } from '@/core/components/ui/SearchBar';
 import { useBranchContext } from '@/features/branches/presentation/contexts/branch-context';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { EquipmentTable } from '../../components/EquipmentTable';
 
 export type EquipmentProps = {}
 
@@ -14,7 +15,7 @@ const Equipment: React.FC<EquipmentProps> = ({ }) => {
 
     return (
         <>
-            <ChevronsBreadcrumb
+            <SimpleBreadcrumb
                 currentPage='Equipamiento'
                 breadcrumbs={[
                     {
@@ -36,7 +37,7 @@ const Equipment: React.FC<EquipmentProps> = ({ }) => {
                     <SearchBar />
                     <Button onClick={() => navigate("add-equipment")} className="bg-gradient text-white rounded-full">Nuevo +</Button>
                 </div>
-                {/* <PlansTable branchId={branch.uuid} /> */}
+                <EquipmentTable branchId={branch.uuid} />
             </div>
         </>
     );

@@ -7,6 +7,8 @@ export interface PlanRemoteDataSource {
     findPlans(): Promise<APIResult<IPlan[]>>;
     findBranchPlans(branchId: string): Promise<APIResult<IPlan[]>>;
     createPlan(createPlanDto: CreatePlanDto): Promise<APIResult<IPlan>>;
+    update(plan: IPlan): Promise<APIResult<IPlan>>;
+    delete(uuid: string): Promise<APIResult<IPlan>>;
 }
 
 @injectable()
@@ -29,7 +31,7 @@ export class PlanRemoteDataSourceImpl implements PlanRemoteDataSource {
     findBranchPlans(branchId: string): Promise<APIResult<IPlan[]>> {
         return this.apiRestClient.call(
             HttpMethod.GET,
-            "/plans/" + branchId,
+            "plans/" + branchId,
             {}
             // {
             //     body: { userName, password }
@@ -44,6 +46,24 @@ export class PlanRemoteDataSourceImpl implements PlanRemoteDataSource {
             {
                 body: createPlanDto
             }
+        )
+    }
+
+    update(plan: IPlan): Promise<APIResult<IPlan>> {
+        return this.apiRestClient.call(
+            HttpMethod.PATCH,
+            "/plans/" + plan.uuid,
+            {
+                body: plan
+            }
+        )
+    }
+
+    delete(uuid: string): Promise<APIResult<IPlan>> {
+        return this.apiRestClient.call(
+            HttpMethod.DELETE,
+            "/plans/" + uuid,
+            {}
         )
     }
 }

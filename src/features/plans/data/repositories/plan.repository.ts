@@ -56,4 +56,34 @@ export class PlanRepositoryImpl implements PlanRepository {
                 throw new Error();
         }
     }
+
+    async updatePlan(plan: IPlan): Promise<IPlan> {
+        const response = await this.planRemoteDataSource.update(plan);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
+
+    async deletePlan(uuid: string): Promise<IPlan> {
+        const response = await this.planRemoteDataSource.delete(uuid);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
 }

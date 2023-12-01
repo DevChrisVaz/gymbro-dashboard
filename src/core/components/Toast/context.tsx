@@ -36,14 +36,14 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
         setToastList(prev => prev.filter((toast) => toast.uuid !== uuid));
     };
 
-    const value = {
+    const value: IToastContext = {
         toastList,
         addToast
     };
 
     return (
         <ToastContext.Provider value={value}>
-            <div className="absolute right-0 top-[65px] mx-3">
+            <div className="absolute right-0 top-[65px] mx-3 z-50">
                 {toastList.map((toast, index) => {
                     const { type, message } = toast;
 

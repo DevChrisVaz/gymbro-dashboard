@@ -13,14 +13,14 @@ const BranchesTable: React.FC<BranchesTableProps> = ({ }) => {
 
 	const findBranchesUseCase = container.resolve<FindBranchesUseCase>("FindBranchesUseCase");
 
-	const findPlans = async () => {
+	const findBranches = async () => {
 		setIsLoading(true);
 		setBranches(await findBranchesUseCase.run());
 		setIsLoading(false);
 	}
 
 	useEffect(() => {
-		findPlans();
+		findBranches();
 	}, []);
 
 	return (

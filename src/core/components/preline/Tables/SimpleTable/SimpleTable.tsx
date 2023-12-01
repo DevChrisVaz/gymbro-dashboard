@@ -9,7 +9,7 @@ const SimpleTable: React.FC<SimpleTableProps> = (props) => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col z-[1]">
 			<div className="-m-1.5 overflow-x-auto">
 				<div className="p-1.5 pb-6 min-w-full inline-block align-middle">
 					<div className="overflow-hidden">

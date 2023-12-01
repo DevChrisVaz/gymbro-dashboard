@@ -31,6 +31,15 @@ import { GYMRemoteDataSource, GYMRemoteDataSourceImpl } from "@/features/gyms/da
 import { GYMRepository } from "@/features/gyms/domain/repositories/gym.repository";
 import { GYMRepositoryImpl } from "@/features/gyms/data/repositories/gym.repository";
 import { FindUserGymUseCase } from "@/features/gyms/application/usecases/find-user-gym-usecase";
+import { EquipmentRemoteDataSource, EquipmentRemoteDataSourceImpl } from "@/features/equipment/infrastructure/data/data-sources/equipment-remote-data-source";
+import { EquipmentRepository } from "@/features/equipment/domain/repositories/equipment.repository";
+import { EquipmentRepositoryImpl } from "@/features/equipment/infrastructure/data/repositories/equipment.repository";
+import { CreateEquipmentUseCase } from "@/features/equipment/application/usecases/create-equipment-usecase";
+import { GetEquipmentListUseCase } from "@/features/equipment/application/usecases/get-equipment-list-usecase";
+import { UpdatePlanUseCase } from "@/features/plans/application/usecases/update-plan-usecase";
+import { DeletePlanUseCase } from "@/features/plans/application/usecases/delete-plan-usecase";
+import { UpdateEquipmentUseCase } from "@/features/equipment/application/usecases/update-equipment-usecase";
+import { DeleteEquipmentUseCase } from "@/features/equipment/application/usecases/delete-equipment-usecase";
 
 //#region Other Dependencies 
 
@@ -142,6 +151,14 @@ container.register<FindBranchPlansUseCase>("FindBranchPlansUseCase", {
     useClass: FindBranchPlansUseCase
 });
 
+container.register<UpdatePlanUseCase>("UpdatePlanUseCase", {
+    useClass: UpdatePlanUseCase
+});
+
+container.register<DeletePlanUseCase>("DeletePlanUseCase", {
+    useClass: DeletePlanUseCase
+});
+
 //#endregion
 
 //#region GYM Dependencies
@@ -165,6 +182,38 @@ container.register<FindUserGymUseCase>("FindUserGymUseCase", {
 // container.register<null>("", {
 //     useValue: null
 // });
+
+//#endregion
+
+//#region EquipmentDependencies
+
+container.register<EquipmentRemoteDataSource>("EquipmentRemoteDataSource", {
+    useClass: EquipmentRemoteDataSourceImpl
+});
+
+container.register<EquipmentRepository>("EquipmentRepository", {
+    useClass: EquipmentRepositoryImpl
+});
+
+container.register<CreateEquipmentUseCase>("CreateEquipmentUseCase", {
+    useClass: CreateEquipmentUseCase
+});
+
+container.register<CreateEquipmentUseCase>("CreateEquipmentUseCase", {
+    useClass: CreateEquipmentUseCase
+});
+
+container.register<UpdateEquipmentUseCase>("UpdateEquipmentUseCase", {
+    useClass: UpdateEquipmentUseCase
+});
+
+container.register<DeleteEquipmentUseCase>("DeleteEquipmentUseCase", {
+    useClass: DeleteEquipmentUseCase
+});
+
+container.register<GetEquipmentListUseCase>("GetEquipmentListUseCase", {
+    useClass: GetEquipmentListUseCase
+});
 
 //#endregion
 

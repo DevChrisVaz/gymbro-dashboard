@@ -3,7 +3,9 @@ const colors = require('tailwindcss/colors')
 
 export default {
   content: [
-    'node_modules/preline/dist/*.js',
+    "./node_modules/flowbite/**/*.js",
+    './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
+    './node_modules/preline/dist/*.js',
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -46,7 +48,8 @@ export default {
   },
   plugins: [
     require("tailwindcss-animated"),
-    require("preline/plugin")
+    require("preline/plugin"),
+    require('flowbite/plugin')
   ],
   darkMode: 'class'
 }

@@ -11,6 +11,7 @@ import { Branch } from "@/features/branches/presentation/pages/Branch";
 import { BranchLayout } from "@/features/branches/presentation/components/BranchLayout";
 import { GYMLayout } from "@/features/gyms/presentation/components/GYMLayout";
 import Equipment from "@/features/equipment/presentation/pages/Equipment/Equipment";
+import { CreateEquipment } from "@/features/equipment/presentation/pages/CreateEquipment";
 
 export const Router: React.FC = () => {
     return (
@@ -34,6 +35,7 @@ export const Router: React.FC = () => {
                     </Route>
                     <Route path="equipment" element={<Outlet />}>
                         <Route index element={<Equipment />} />
+                        <Route path="add-equipment" element={<CreateEquipment />} />
                     </Route>
                 </Route>
                 <Route path="login" element={<Login />} />
