@@ -3,8 +3,8 @@ import { IPlan } from '@/features/plans/domain/entities/plan.entity';
 import React, { useEffect, useState } from 'react';
 import { container } from "@/config/dependencies";
 import DataTable from '@/core/components/flowbite/Tables/DataTable/DataTable';
-import UpdatePlanForm from '../UpdatePlanForm/UpdatePlanForm';
 import { DeletePlanUseCase } from '@/features/plans/application/usecases/delete-plan-usecase';
+import { UpdatePlanForm } from '../UpdatePlanForm';
 
 export type PlansTableProps = {
 	branchId: string;

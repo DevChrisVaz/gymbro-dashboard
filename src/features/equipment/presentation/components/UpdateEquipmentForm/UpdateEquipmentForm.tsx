@@ -55,7 +55,6 @@ const UpdateEquipmentForm: React.FC<UpdateEquipmentFormProps> = (props) => {
         })();
     }, [props.registry]);
 
-
     return (
         <Formik
             initialValues={props.registry ?? initialValues}

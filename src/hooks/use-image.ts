@@ -7,7 +7,7 @@ const useImage = () => {
     const [height, setHeight] = useState<number>(0);
 
     return (data: string) => {
-        let image = new Image();
+        const image = new Image();
         image.onload = function () {
             setImg(data);
             setExists(true);

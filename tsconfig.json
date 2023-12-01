@@ -44,6 +44,6 @@
     }
   ],
   "files": [
-    "./node_modules/redux-persist/types/storage/index.d.ts", "./src/features/users/presentation/components/CreateUserForm/CreateUserForm.1.tsx"
+    "./node_modules/redux-persist/types/storage/index.d.ts"
   ],
 }
