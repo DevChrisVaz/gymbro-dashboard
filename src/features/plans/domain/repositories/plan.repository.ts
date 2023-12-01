@@ -5,4 +5,6 @@ export interface PlanRepository {
     findPlans(): Promise<IPlan[]>;
     findBranchPlans(branchId: string): Promise<IPlan[]>;
     createPlan(createPlanDto: CreatePlanDto): Promise<IPlan>;
+    updatePlan(plan: IPlan): Promise<IPlan>;
+    deletePlan(uuid: string): Promise<IPlan>
 }

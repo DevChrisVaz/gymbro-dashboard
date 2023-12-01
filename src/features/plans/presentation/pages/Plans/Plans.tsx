@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlansTable } from '../../components/PlansTable';
 import { useBranchContext } from '@/features/branches/presentation/contexts/branch-context';
-import { ChevronsBreadcrumb } from '@/core/components/preline/Breadcrumbs/ChevronsBreadcrumb';
+import { SimpleBreadcrumb } from '@/core/components/flowbite/breadcrumbs';
 // import { PlansTable } from '../../components/PlansTable';
 
 export type PlansProps = {
@@ -17,13 +17,9 @@ const Plans: React.FC<PlansProps> = ({ }) => {
 
 	return (
 		<>
-			<ChevronsBreadcrumb
+			<SimpleBreadcrumb
 				currentPage="Planes"
 				breadcrumbs={[
-					{
-						pageName: "Dashboard",
-						path: "/"
-					},
 					{
 						pageName: "Sucursales",
 						path: "/branches"

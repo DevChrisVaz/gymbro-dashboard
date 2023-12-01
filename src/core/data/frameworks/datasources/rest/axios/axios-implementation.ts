@@ -2,6 +2,7 @@ import { type AxiosInstance, AxiosRequestConfig, AxiosResponse, isAxiosError } f
 import { authorizationInterceptor } from "./interceptors/authorization.interceptor";
 import { APIResult, ApiRestClient, HttpMethod } from "@/core/data/contracts/datasources/api-rest-client";
 import { inject, injectable } from "tsyringe";
+import { ServerException } from "@/core/exceptions/server-exception";
 
 @injectable()
 export class AxiosApiRestClient implements ApiRestClient {
@@ -205,7 +206,7 @@ export class AxiosApiRestClient implements ApiRestClient {
     }
 
     _mapResponse<T>(response?: AxiosResponse): APIResult<T> {
-        if (response != null) {
+        if (response != null && response.status < 500) {
             if (response.status >= 200 && response.status <= 300) {
                 return {
                     type: "Succeeded",
@@ -218,10 +219,11 @@ export class AxiosApiRestClient implements ApiRestClient {
                 }
             }
         } else {
-            return {
-                type: "Error",
-                message: "Ocurrió un error inesperado"
-            }
+            throw new ServerException();
+            // return {
+            //     type: "Error",
+            //     message: "Ocurrió un error inesperado"
+            // }
         }
     }
 }

@@ -55,5 +55,33 @@ export class EquipmentRepositoryImpl implements EquipmentRepository {
         }
     }
 
+    async updateEquipment(equipment: IEquipment): Promise<IEquipment> {
+        const response = await this.equipmentRemoteDataSource.update(equipment);
 
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
+
+    async deleteEquipment(uuid: string): Promise<IEquipment> {
+        const response = await this.equipmentRemoteDataSource.delete(uuid);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
 }

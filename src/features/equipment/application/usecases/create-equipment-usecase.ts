@@ -11,7 +11,6 @@ export class CreateEquipmentUseCase {
     async run(createEquipmentDto: CreateEquipmentDto, data: FormData): Promise<void> {
         const imagePath: string = await this.equipmentRepository.uploadImage(data);
         createEquipmentDto.image = imagePath;
-        console.log(createEquipmentDto);
         await this.equipmentRepository.createEquipment(createEquipmentDto);
     }
 }

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { container } from "@/config/dependencies";
 import { GetEquipmentListUseCase } from "@/features/equipment/application/usecases/get-equipment-list-usecase";
 import { IEquipment } from "@/features/equipment/domain/entities/equipment.entity";
-import { SimpleTable } from "@/core/components/preline/Tables/SimpleTable";
+import { DeleteEquipmentUseCase } from "@/features/equipment/application/usecases/delete-equipment-usecase";
+import DataTable from "@/core/components/flowbite/Tables/DataTable/DataTable";
+import UpdateEquipmentForm from "../UpdateEquipmentForm/UpdateEquipmentForm";
 
 export type EquipmentTableProps = {
     branchId: string;
@@ -13,6 +15,7 @@ export const EquipmentTable: React.FC<EquipmentTableProps> = (props) => {
     const [equipment, setEquipment] = useState<IEquipment[]>([]);
 
     const getEquipmentListUseCase = container.resolve<GetEquipmentListUseCase>("GetEquipmentListUseCase");
+    const deleteEquipmentUseCase = container.resolve<DeleteEquipmentUseCase>("DeleteEquipmentUseCase");
 
     const findEquipmentList = async () => {
         setIsLoading(true);
@@ -20,12 +23,18 @@ export const EquipmentTable: React.FC<EquipmentTableProps> = (props) => {
         setIsLoading(false);
     }
 
+    const deleteEquipment = async (equipment?: IEquipment) => {
+        if (equipment) {
+            await deleteEquipmentUseCase.run(equipment.uuid);
+        }
+    }
+
     useEffect(() => {
         findEquipmentList();
-    }, []);
+    }, [props.branchId]);
 
     return (
-        <SimpleTable
+        <DataTable
             columns={[
                 {
                     id: "name",
@@ -40,9 +49,10 @@ export const EquipmentTable: React.FC<EquipmentTableProps> = (props) => {
                     name: "Descripción"
                 }
             ]}
-            linked
             rows={equipment}
             isLoading={isLoading}
+            form={<UpdateEquipmentForm />}
+            onDelete={deleteEquipment}
         />
     );
 }

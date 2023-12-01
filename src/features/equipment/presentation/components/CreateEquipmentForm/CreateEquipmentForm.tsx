@@ -98,7 +98,7 @@ const CreateEquipmentForm: React.FC<CreateEquipmentFormProps> = () => {
                             {
                                 isSubmitting ?
                                     <Loader /> :
-                                    "Crear sucursal"
+                                    "Crear equipamiento"
                             }
                         </Button>
                     </div>

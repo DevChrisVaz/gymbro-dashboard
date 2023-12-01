@@ -28,6 +28,7 @@ const Home: React.FC<HomeProps> = ({ }) => {
 		authLocalDataSource.removeToken();
 		navigate("/login");
 	}
+
 	return (
 		<div className='text-white'>
 			<h1>Dashboard Home page</h1>

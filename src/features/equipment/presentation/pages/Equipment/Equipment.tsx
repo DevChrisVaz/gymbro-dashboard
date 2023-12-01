@@ -15,7 +15,7 @@ const Equipment: React.FC<EquipmentProps> = ({ }) => {
 
     return (
         <>
-            <ChevronsBreadcrumb
+            <SimpleBreadcrumb
                 currentPage='Equipamiento'
                 breadcrumbs={[
                     {

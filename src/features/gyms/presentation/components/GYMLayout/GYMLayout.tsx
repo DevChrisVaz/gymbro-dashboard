@@ -31,7 +31,7 @@ const GYMLayout: React.FC<GYMLayoutProps> = ({ }) => {
 
 	return (
 		<GYMContextProvider value={gym}>
-			<div className="w-screen h-screen flex overflow-hidden">
+			<div className="relative w-screen h-screen flex overflow-hidden">
 				<GYMSidebar />
 				<div className="w-full h-full overflow-auto">
 					<nav className="bg-light dark:bg-dark flex justify-between items-center py-2 md:px-6 lg:px-10 xl:px-6 px-3 shadow-md">

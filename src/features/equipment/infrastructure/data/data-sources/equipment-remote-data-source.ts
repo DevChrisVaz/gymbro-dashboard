@@ -7,6 +7,8 @@ export interface EquipmentRemoteDataSource {
     create(createEquipmentDto: CreateEquipmentDto): Promise<APIResult<void>>;
     getEquipmentList(branchId: string): Promise<APIResult<IEquipment[]>>
     uploadImage(data: FormData): Promise<APIResult<string>>;
+    update(equipment: IEquipment): Promise<APIResult<IEquipment>>;
+    delete(uuid: string): Promise<APIResult<IEquipment>>;
 }
 
 @injectable()
@@ -27,7 +29,7 @@ export class EquipmentRemoteDataSourceImpl implements EquipmentRemoteDataSource 
     getEquipmentList(branchId: string): Promise<APIResult<IEquipment[]>> {
         return this.apiRestClient.call(
             HttpMethod.GET,
-            "branches/" + branchId + "/equipment",
+            "/branches/" + branchId + "/equipment",
             {}
         )
     }
@@ -43,6 +45,24 @@ export class EquipmentRemoteDataSourceImpl implements EquipmentRemoteDataSource 
                     }
                 }
             }
+        )
+    }
+
+    update(equipment: IEquipment): Promise<APIResult<IEquipment>> {
+        return this.apiRestClient.call(
+            HttpMethod.PATCH,
+            "/equipment/" + equipment.uuid,
+            {
+                body: equipment
+            }
+        )
+    }
+
+    delete(uuid: string): Promise<APIResult<IEquipment>> {
+        return this.apiRestClient.call(
+            HttpMethod.DELETE,
+            "/equipment/" + uuid,
+            {}
         )
     }
 
