@@ -1,12 +1,10 @@
-import { ChevronsBreadcrumb } from '@/core/components/preline/Breadcrumbs/ChevronsBreadcrumb';
-import { Button } from '@/core/components/ui/Button';
 import { FindBranchByIdUseCase } from '@/features/branches/application/usecases/find-branch-by-id-usecase';
 import { IBranch } from '@/features/branches/domain/entities/branch.entity';
-import { PlansTable } from '@/features/plans/presentation/components/PlansTable';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { container } from "@/config/dependencies";
 import { BranchContextProvider } from '../../contexts/branch-context';
+import { SimpleBreadcrumb } from '@/core/components/flowbite/breadcrumbs';
 
 export type BranchProps = {
 }
@@ -20,7 +18,6 @@ const Branch: React.FC<BranchProps> = ({ }) => {
 	});
 
 	const { id: branchId } = useParams();
-	const navigate = useNavigate();
 
 	const findBranchByIdUseCase = container.resolve<FindBranchByIdUseCase>("FindBranchByIdUseCase");
 
@@ -34,12 +31,8 @@ const Branch: React.FC<BranchProps> = ({ }) => {
 
 	return (
 		<BranchContextProvider value={branch}>
-			<ChevronsBreadcrumb
+			<SimpleBreadcrumb
 				breadcrumbs={[
-					{
-						pageName: "Dashboard",
-						path: "/"
-					},
 					{
 						pageName: "Sucursales",
 						path: "/branches"

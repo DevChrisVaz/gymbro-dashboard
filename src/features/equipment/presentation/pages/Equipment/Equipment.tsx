@@ -1,10 +1,10 @@
-import { ChevronsBreadcrumb } from '@/core/components/preline/Breadcrumbs/ChevronsBreadcrumb';
 import { Button } from '@/core/components/ui/Button';
 import { SearchBar } from '@/core/components/ui/SearchBar';
 import { useBranchContext } from '@/features/branches/presentation/contexts/branch-context';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EquipmentTable } from '../../components/EquipmentTable';
+import { SimpleBreadcrumb } from '@/core/components/flowbite/breadcrumbs';
 
 export type EquipmentProps = {}
 
@@ -18,10 +18,6 @@ const Equipment: React.FC<EquipmentProps> = ({ }) => {
             <SimpleBreadcrumb
                 currentPage='Equipamiento'
                 breadcrumbs={[
-                    {
-                        pageName: "Dashboard",
-                        path: "/"
-                    },
                     {
                         pageName: "Sucursales",
                         path: "/branches"

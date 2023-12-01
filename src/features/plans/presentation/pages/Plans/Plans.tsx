@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlansTable } from '../../components/PlansTable';
 import { useBranchContext } from '@/features/branches/presentation/contexts/branch-context';
-import { SimpleBreadcrumb } from '@/core/components/flowbite/breadcrumbs';
+import SimpleBreadcrumb from '@/core/components/flowbite/breadcrumbs/SimpleBreadcrumb/SimpleBreadcrumb';
 // import { PlansTable } from '../../components/PlansTable';
 
 export type PlansProps = {

@@ -28,11 +28,14 @@ const DataTable: React.FC<DataTablesProps> = (props) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} close={closeModal} size='4xl'>
-        {cloneElement(props.form, {
-          registry
-        })}
-      </Modal>
+      {
+        props.form &&
+        <Modal isOpen={isOpen} close={closeModal} size='4xl'>
+          {cloneElement(props.form, {
+            registry
+          })}
+        </Modal>
+      }
       <Modal isOpen={isDeleteOpen} close={() => { closeDeleteModal(); setDeletingState(PromiseState.INITIAL) }} size='md'>
         <div className="p-4 md:p-5 text-center">
           <PromiseStateHandler
@@ -86,12 +89,15 @@ const DataTable: React.FC<DataTablesProps> = (props) => {
                   )
                 })
               }
-              <th
-                scope="col"
-                className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-              >
-                Action
-              </th>
+              {
+                (props.onDelete && props.form) &&
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                >
+                  Action
+                </th>
+              }
             </tr>
           </thead>
           <tbody>
@@ -127,10 +133,13 @@ const DataTable: React.FC<DataTablesProps> = (props) => {
                           )
                         })
                       }
-                      <td className="flex items-center px-6 py-4">
-                        <a type="button" onClick={() => { setRegistry(row); openModal() }} className="font-medium text-primary hover:underline">Edit</a>
-                        <a type="button" onClick={() => { setRegistry(row); openDeleteModal() }} className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
-                      </td>
+                      {
+                        (props.onDelete && props.form) &&
+                        <td className="flex items-center px-6 py-4">
+                          {props.form && <a type="button" onClick={(e) => { e.stopPropagation(), setRegistry(row); openModal() }} className="font-medium text-primary hover:underline cursor-pointer">Edit</a>}
+                          {props.onDelete && <a type="button" onClick={(e) => { e.stopPropagation(), setRegistry(row); openDeleteModal() }} className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3 cursor-pointer">Remove</a>}
+                        </td>
+                      }
                     </tr>
                   )
                 }) :

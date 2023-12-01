@@ -71,4 +71,34 @@ export class BranchRepositoryImpl implements BranchRepository {
         }
     }
 
+    async updateBranch(branch: IBranch): Promise<IBranch> {
+        const response = await this.branchRemoteDataSource.update(branch);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
+
+    async deleteBranch(uuid: string): Promise<IBranch> {
+        const response = await this.branchRemoteDataSource.delete(uuid);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
+
 }

@@ -2,7 +2,7 @@ import { IUser } from '@/features/users/domain/entities/user.entity';
 import { container } from "@/config/dependencies";
 import React, { useEffect, useState } from 'react';
 import { FindUsersUseCase } from '@/features/users/application/usecases/find-users-usecase';
-import DataTable from '@/core/components/preline/Tables/DataTable/DataTable';
+import DataTable from '@/core/components/flowbite/Tables/DataTable/DataTable';
 
 export type UsersTableProps = {
 }

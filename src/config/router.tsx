@@ -12,6 +12,7 @@ import { BranchLayout } from "@/features/branches/presentation/components/Branch
 import { GYMLayout } from "@/features/gyms/presentation/components/GYMLayout";
 import Equipment from "@/features/equipment/presentation/pages/Equipment/Equipment";
 import { CreateEquipment } from "@/features/equipment/presentation/pages/CreateEquipment";
+import CreateUserPage from "@/features/users/presentation/pages/CreateUserPage/CreateUserPage";
 
 export const Router: React.FC = () => {
     return (
@@ -19,7 +20,10 @@ export const Router: React.FC = () => {
             <Routes>
                 <Route element={<GYMLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="users" element={<Users />} />
+                    <Route path="users" element={<Outlet />}>
+                        <Route index element={<Users />} />
+                        <Route path="create-user" element={<CreateUserPage />} />
+                    </Route>
                     <Route path="plans" element={<Plans />} />
                     <Route path="plans/create-plan" element={<CreatePlan />} />
                     <Route path="branches" element={<Outlet />}>

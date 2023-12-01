@@ -27,6 +27,7 @@ const PlansTable: React.FC<PlansTableProps> = (props) => {
 	const deletePlan = async (plan?: IPlan) => {
 		if (plan) {
 			await deletePlanUseCase.run(plan.uuid);
+			await findPlansUseCase.run(props.branchId);
 		}
 	}
 

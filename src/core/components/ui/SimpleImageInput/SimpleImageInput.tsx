@@ -1,7 +1,8 @@
 import { ImageOff, Upload } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export interface SimpleImageInputProps {
+    currentImage?: File;
     updatePictureCb: (file: File) => void;
     maxFileSizeInBytes?: number;
     [x: string]: any;
@@ -16,6 +17,7 @@ const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 5242880;
 const SimpleImageInput: React.FC<SimpleImageInputProps> = ({
     updatePictureCb,
     maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES,
+    currentImage,
     ...otherProps
 }) => {
 
@@ -35,6 +37,13 @@ const SimpleImageInput: React.FC<SimpleImageInputProps> = ({
     //     callUpdateFilesCb({ ...files });
     // };
 
+    useEffect(() => {
+        if(currentImage) {
+            setImage(currentImage);
+        }
+    }, [currentImage]);
+    
+
     return (
         <div className='w-full aspect-square border border-primary-500 rounded-lg overflow-hidden'>
             <div className="relative w-full h-full">
@@ -44,7 +53,7 @@ const SimpleImageInput: React.FC<SimpleImageInputProps> = ({
                             <img 
                                 className="w-full h-full object-cover"
                                 src={URL.createObjectURL(image)} 
-                                alt="" 
+                                alt="Equipment"
                             />
                         </div> :
                         <div className="w-full h-full rounded-lg bg-dark-gray-soft flex items-center justify-center">

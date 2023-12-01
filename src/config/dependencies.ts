@@ -40,6 +40,11 @@ import { UpdatePlanUseCase } from "@/features/plans/application/usecases/update-
 import { DeletePlanUseCase } from "@/features/plans/application/usecases/delete-plan-usecase";
 import { UpdateEquipmentUseCase } from "@/features/equipment/application/usecases/update-equipment-usecase";
 import { DeleteEquipmentUseCase } from "@/features/equipment/application/usecases/delete-equipment-usecase";
+import { UpdateBranchUseCase } from "@/features/branches/application/usecases/update-branch-usecase";
+import { DeleteBranchUseCase } from "@/features/branches/application/usecases/delete-branch-usecase";
+import { CreateUserUseCase } from "@/features/users/application/usecases/create-user-usecase";
+import { UpdateUserUseCase } from "@/features/users/application/usecases/update-user-usecase";
+import { DeleteUserUseCase } from "@/features/users/application/usecases/delete-user-usecase";
 
 //#region Other Dependencies 
 
@@ -103,6 +108,18 @@ container.register<FindUsersUseCase>("FindUsersUseCase", {
     useClass: FindUsersUseCase
 });
 
+container.register<CreateUserUseCase>("CreateUserUseCase", {
+    useClass: CreateUserUseCase
+});
+
+container.register<UpdateUserUseCase>("UpdateUserUseCase", {
+    useClass: UpdateUserUseCase
+});
+
+container.register<DeleteUserUseCase>("DeleteUserUseCase", {
+    useClass: DeleteUserUseCase
+});
+
 //#endregion
 
 //#region Branch Dependencies 
@@ -125,6 +142,14 @@ container.register<FindBranchByIdUseCase>("FindBranchByIdUseCase", {
 
 container.register<FindBranchesUseCase>("FindBranchesUseCase", {
     useClass: FindBranchesUseCase
+});
+
+container.register<UpdateBranchUseCase>("UpdateBranchUseCase", {
+    useClass: UpdateBranchUseCase
+});
+
+container.register<DeleteBranchUseCase>("DeleteBranchUseCase", {
+    useClass: DeleteBranchUseCase
 });
 
 //#endregion

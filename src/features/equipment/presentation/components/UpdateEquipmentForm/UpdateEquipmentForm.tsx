@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { container } from "@/config/dependencies";
 import { Formik } from 'formik';
@@ -10,6 +10,7 @@ import { Loader } from 'lucide-react';
 import { UpdateEquipmentUseCase } from '@/features/equipment/application/usecases/update-equipment-usecase';
 import { IEquipment } from '@/features/equipment/domain/entities/equipment.entity';
 import updateEquipmentSchema from '@/features/equipment/infrastructure/data/validations/update-equipment-schema';
+import { MEDIA_URL } from '@/config/constants/urls';
 
 export type UpdateEquipmentFormProps = {
     registry?: IEquipment
@@ -44,6 +45,17 @@ const UpdateEquipmentForm: React.FC<UpdateEquipmentFormProps> = (props) => {
         navigate(-1);
     }
 
+    useEffect(() => {
+        (async () => {
+            if (props.registry) {
+                let response = await fetch(MEDIA_URL + props.registry.image);
+                let data = await response.blob();
+                setImage(new File([data], props.registry.image.split("/").pop()!, { type: 'image/jpeg' }))
+            }
+        })();
+    }, [props.registry]);
+
+
     return (
         <Formik
             initialValues={props.registry ?? initialValues}
@@ -63,6 +75,7 @@ const UpdateEquipmentForm: React.FC<UpdateEquipmentFormProps> = (props) => {
                         <div className="md:flex mb-6">
                             <div className="w-1/3 px-3 mb-6 md:mb-0">
                                 <SimpleImageInput
+                                    currentImage={image}
                                     updatePictureCb={(file: File) => {
                                         setImage(file);
                                         setImageError(null);

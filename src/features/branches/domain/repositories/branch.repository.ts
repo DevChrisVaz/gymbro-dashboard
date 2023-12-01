@@ -6,5 +6,7 @@ export interface BranchRepository {
     create(createBranchDto: CreateBranchDto): Promise<void>;
     find(): Promise<IBranch[]>;
     findById(branchId: string): Promise<IBranch>;
-    findUsers(branchId: string): Promise<IUser[]>
+    findUsers(branchId: string): Promise<IUser[]>;
+    updateBranch(branch: IBranch): Promise<IBranch>;
+    deleteBranch(uuid: string): Promise<IBranch>;
 }

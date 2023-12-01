@@ -14,7 +14,7 @@ export type TableProps<T> = {
 
 export type DataTablesProps = TableProps & {
     form?: ReactNode,
-    onDelete: (registry: any) => void;
+    onDelete?: (registry: any) => void;
 }
 
 export type SimpleTableProps = TableProps & {

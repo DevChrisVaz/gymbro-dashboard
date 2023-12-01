@@ -3,7 +3,7 @@ import { SearchBar } from '@/core/components/ui/SearchBar';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BranchesTable } from '../../components/BranchesTable';
-import { ChevronsBreadcrumb } from '@/core/components/preline/Breadcrumbs/ChevronsBreadcrumb';
+import { SimpleBreadcrumb } from '@/core/components/flowbite/breadcrumbs';
 
 export type BranchesProps = {
 }
@@ -14,7 +14,7 @@ const Branches: React.FC<BranchesProps> = ({ }) => {
 
 	return (
 		<>
-			<ChevronsBreadcrumb 
+			<SimpleBreadcrumb 
 				breadcrumbs={[
 					{
 						pageName: "Dashboard",
