@@ -11,6 +11,7 @@ export interface BranchRemoteDataSource {
     findUsers(branchId: string): Promise<APIResult<IUser[]>>;
     update(branch: IBranch): Promise<APIResult<IBranch>>;
     delete(uuid: string): Promise<APIResult<IBranch>>;
+    getCustomerSubscription(uuid: string, customerId: string): Promise<APIResult<any>>;
 }
 
 @injectable()
@@ -71,4 +72,11 @@ export class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
         );
     }
 
+    getCustomerSubscription(uuid: string, customerId: string): Promise<APIResult<any>> {
+        return this.apiRestClient.call(
+            HttpMethod.GET,
+            `/branches/${uuid}/${customerId}/active`,
+            {}
+        );
+    }
 }

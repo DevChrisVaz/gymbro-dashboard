@@ -5,12 +5,10 @@ import { customTheme } from './theme';
 
 const Modal: React.FC<ModalProps> = (props) => {
     return (
-        <FlowbiteModal size={props.size} theme={customTheme} dismissible show={props.isOpen} onClose={props.close}>
-            {props.title &&
-                <FlowbiteModal.Header>
-                    {props.title}
-                </FlowbiteModal.Header>
-            }
+        <FlowbiteModal size={props.size} theme={customTheme} dismissible={props.dismissible ?? true} show={props.isOpen} onClose={props.close}>
+            <FlowbiteModal.Header>
+                {props.title}
+            </FlowbiteModal.Header>
             <FlowbiteModal.Body>
                 {props.children}
             </FlowbiteModal.Body>
