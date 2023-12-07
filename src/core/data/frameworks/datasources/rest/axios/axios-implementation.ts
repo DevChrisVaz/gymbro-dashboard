@@ -68,7 +68,6 @@ export class AxiosApiRestClient implements ApiRestClient {
                     ...options
                 }
             );
-
             return this._mapResponse(response);
 
         } catch (error) {

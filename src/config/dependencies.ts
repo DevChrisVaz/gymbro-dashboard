@@ -45,6 +45,7 @@ import { DeleteBranchUseCase } from "@/features/branches/application/usecases/de
 import { CreateUserUseCase } from "@/features/users/application/usecases/create-user-usecase";
 import { UpdateUserUseCase } from "@/features/users/application/usecases/update-user-usecase";
 import { DeleteUserUseCase } from "@/features/users/application/usecases/delete-user-usecase";
+import { GetCustomerSubscriptionUseCase } from "@/features/branches/application/usecases/get-customer-subscription-usecase";
 
 //#region Other Dependencies 
 
@@ -150,6 +151,10 @@ container.register<UpdateBranchUseCase>("UpdateBranchUseCase", {
 
 container.register<DeleteBranchUseCase>("DeleteBranchUseCase", {
     useClass: DeleteBranchUseCase
+});
+
+container.register<GetCustomerSubscriptionUseCase>("GetCustomerSubscriptionUseCase", {
+    useClass: GetCustomerSubscriptionUseCase
 });
 
 //#endregion

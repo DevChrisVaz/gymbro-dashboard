@@ -12,10 +12,12 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.5",
+    "@zxing/library": "^0.20.0",
     "axios": "^1.6.0",
     "flowbite": "^2.2.0",
     "flowbite-react": "^0.7.0",
     "formik": "^2.4.5",
+    "html5-qrcode": "^2.3.8",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.292.0",

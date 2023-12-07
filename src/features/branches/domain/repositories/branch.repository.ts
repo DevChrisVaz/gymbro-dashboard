@@ -9,4 +9,5 @@ export interface BranchRepository {
     findUsers(branchId: string): Promise<IUser[]>;
     updateBranch(branch: IBranch): Promise<IBranch>;
     deleteBranch(uuid: string): Promise<IBranch>;
+    getCustomerSubscription(uuid: string, customerId: string): Promise<any>;
 }

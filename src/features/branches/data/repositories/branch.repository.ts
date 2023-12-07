@@ -101,4 +101,18 @@ export class BranchRepositoryImpl implements BranchRepository {
         }
     }
 
+    async getCustomerSubscription(uuid: string, customerId: string): Promise<any> {
+        const response = await this.branchRemoteDataSource.getCustomerSubscription(uuid, customerId);
+
+        switch (response.type) {
+            case "Succeeded":
+                return response.data;
+            case "Failed":
+                throw new Error();
+            case "Error":
+                throw new Error();
+            default:
+                throw new Error();
+        }
+    }
 }
